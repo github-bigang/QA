@@ -127,6 +127,6 @@ class CreateIndex:
     
 if __name__=="__main__":
     c=CreateIndex()
-    c.createIndex(sys.argv[1], sys.argv[2])
+    c.createIndex('data/small/question-seg.txt', 'data/small/question-index.txt')
     
 
