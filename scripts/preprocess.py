@@ -68,8 +68,8 @@ class preprocess:
         return d, old2new
     
     def genQAuniq(self, f, outf):
-        que, qOld2New = self.readUniqIDFile('data/small/question-uniq.txt')
-        ans, aOld2New = self.readUniqIDFile('data/small/answer-uniq.txt')
+        que, qOld2New = self.readUniqIDFile('data/small/question.txt')
+        ans, aOld2New = self.readUniqIDFile('data/small/answer.txt')
         uniqQA = {}
         with open(f, 'r') as data:
             for line in data:
@@ -82,8 +82,10 @@ class preprocess:
                 for aid in uniqQA[qid]:
                     data.write(str(qid) + '\t' + str(aid) + '\n')
                     
-
-pp = preprocess()
-# pp.genPosNeg(sys.argv[1], sys.argv[2], sys.argv[3], True)
-# pp.genUniqID(sys.argv[1], sys.argv[2])
-pp.genQAuniq(sys.argv[1], sys.argv[2])
+if __name__=="__main__":
+    
+    pp = preprocess()
+    # pp.genPosNeg(sys.argv[1], sys.argv[2], sys.argv[3], True)
+    pp.genUniqID('data/small/raw/question.txt', 'data/small/question.txt')
+    pp.genUniqID('data/small/raw/answer.txt', 'data/small/answer.txt')
+    pp.genQAuniq('data/small/raw/question_answer.txt', 'data/small/question_answer.txt')
