@@ -30,5 +30,6 @@ if __name__=="__main__":
     import sys
     segtest = segment()
     # segtest.seg(sys.argv[1])
-    segtest.segFile(sys.argv[1], sys.argv[2])
+    segtest.segFile('data/small/question.txt','data/small/question-seg.txt')
+    segtest.segFile('data/small/answer.txt','data/small/answer-seg.txt')
     segtest.destroy()
