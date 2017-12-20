@@ -2,12 +2,12 @@ export PYTHONPATH=src/:$PYTHONPATH
 DATA=$1
 RUN_ID=$2
 
-DATA_DIR=data/unit/
-MODEL_DIR=model/unit/$RUN_ID_$3
-TRAIN_FILE=$DATA_DIR/qa.txt 
-DEV_FILE=$DATA_DIR/qa.txt
-TEST_FILE=$DATA_DIR/qa.txt
-W2V_PATH=resource/glove.6B.300d.txt
+DATA_DIR=data/small/
+MODEL_DIR=model/small/$3
+TRAIN_FILE=$DATA_DIR/train.txt 
+DEV_FILE=$DATA_DIR/test.txt
+TEST_FILE=$DATA_DIR/test.txt
+W2V_PATH=resource/w2v/w2v_cn_wiki_100.txt
 INTERMEDIATE_TEST_OUTPUT_FILE=$MODEL_DIR/test.prediction.intermediate
 
 LEARNING_RATE=0.0001

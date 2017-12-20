@@ -4,36 +4,6 @@ import codecs
 sys.path.append('src/ir/')
 
 class preprocess:
-    def genPosNeg(self, qfile, afile, outfile, test=False):
-        import random
-        qtext = self.readFile(qfile)
-        qtext_set = {}
-        for qid in qtext:
-            qtext_set[qid] = set(qtext[qid].split(' '))
-        atext = self.readFile(afile)
-        atext_set = {}
-        for aid in atext:
-            atext_set[aid] = set(atext[aid].split(' '))
-        from queryIndex_tfidf import QueryIndex
-        q=QueryIndex('data/small/question-index.txt')
-        with open(outfile, 'w') as out:
-            for qid in qtext:
-#                 if not test or random.uniform(0,1) < 0.5:
-#                     for aid in atext:
-#                         if qid == aid:
-#                             out.write('1')
-#                             out.write('\t' + qid + '\t' + qtext[qid] + '\t' + atext[aid] + '\t' + aid + '\n')
-#                         elif len(qtext_set[aid].intersection(qtext_set[qid])) > 2 and len(atext_set[aid].intersection(qtext_set[qid])) > 2: # and random.uniform(0,1) < 0.01:
-#                             out.write('2')
-#                             out.write('\t' + qid + '\t' + qtext[qid] + '\t' + atext[aid] + '\t' + aid + '\n')
-                out.write('1\t' + str(qid) + '\t' + qtext[qid] + '\t' + atext[qid] + '\t' + aid + '\n')        
-                docs = q.queryIndex(qtext[qid], 100)
-                if docs:
-                    for d in docs:
-                        if q.sigmoid(d[0]) < 0.5: break
-                        if qtext[qid] != qtext[d[1]] and (not test or random.uniform(0,1) < 0.2):
-                            out.write('2\t' + qid + '\t' + qtext[qid] + '\t' + atext[d[1]] + '\t' + d[1] + '\n') 
-
     def readFile(self, f):
         d = {}
         with open(f, 'r') as data:
